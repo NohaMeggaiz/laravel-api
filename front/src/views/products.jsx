@@ -12,6 +12,16 @@ export default function products(){
         getProducts();
     }, [])
 
+    const onDeleteClick = prod => {
+        if (!window.confirm("Are you sure you want to delete this user?")) {
+          return
+        }
+        axiosClient.delete(`/products/${prod.id}`)
+          .then(() => {
+            getProducts()
+          })
+      }
+
 
     const getProducts = () => {
         setLoading(true)
